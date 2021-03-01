@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}
+TestPress.in | Available
+  {% endblock %}
+
+{% block content %}
+<center>
+	<h1> {% if user_logged %}
+	<a href="logout">Log out </a>
+ {% endif %} </h1>
+	<br><br><br><br><br><br><br>
+	<div id = "container ">
+		<header>
+			<h1>Available Quiz Sets</h1>
+		</header>
+
+		<section>
+
+			{% for q in questions %}
+
+			<h3> Set {{ q }} :  {% if user_logged %}
+	<a href= question/{{user}}/{{q}}/1 >Take Now </a>
+ {% endif %} {% if not user_logged %}
+	<a href= "loginpage" >Login to take tests </a>
+ {% endif %}</h3>
+
+			{% endfor %}
+
+				<br><br>
+
+			</form>
+			<br><br>
+		</section>
+
+	</div>
+</center>
+  {% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}
+TestPress.in | Quiz
+  {% endblock %}
+
+{% block content %}
+<center>
+<h1>Quiz Time ( {{total}} out of 10 correct )  </h1>
+<br>
+	<h1 style ="color:red">{% if test_finished %}
+	Test Completed
+ {% endif %}</h1>
+<br>
+<div class="progress">
+  <div class="progress-bar" role="progressbar" style="width: {{progress}}%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+	<br>
+<ul>
+
+	{% if question_answered %}
+	<h3> {{ number }}.  {{ q.Content }} <span style="color:#cccc00
+"> {{question_status}} </span> </h3>
+
+	1. {{ q.Option_1 }} {% if q.Option_1_Correct %}
+	<button class="button">Correct Answer</button>
+ {% endif %}
+	<br><br>
+	2. {{ q.Option_2 }}{% if q.Option_2_Correct %}
+	<button class="button">Correct Answer</button> {% endif %}
+	<br><br>
+	3. {{ q.Option_3 }}{% if q.Option_3_Correct %}<button class="button">Correct Answer</button> {% endif %}
+	<br><br>
+	4. {{ q.Option_4 }}{% if q.Option_4_Correct %}<button class="button">Correct Answer</button> {% endif %}
+	<br><br>
+
+    {% else %}
+						<form name = "quizForm" onsubmit = "return submitAnswers(answers = ['{{ q.answer }}'])">
+
+				<h3> {{ number }}.  {{ q.Content }}</h3>
+
+				1. <input type = "checkbox" name = "option_1" value = "1" id = "q1">    {{ q.Option_1 }}<br><br>
+				2. <input type = "checkbox" name = "option_2" value = "1" id = "q2">    {{ q.Option_2 }}<br><br>
+				3. <input type = "checkbox" name = "option_3" value = "1" id = "q3">    {{ q.Option_3 }}<br><br>
+				4. <input type = "checkbox" name = "option_4" value = "1" id = "q4">    {{ q.Option_4 }}<br><br>
+
+			<input class = "button3" type = "submit" value = "Submit Answer">
+
+				<br><br>
+
+			</form>
+{% endif %}
+
+
+</ul>
+
+
+{% if show_previous %}<span style = "float:left"><a href={{number|add:-1}}><button class="button2"> Previous</button></a>  </span>{% endif %}
+{% if test_finished %}
+	<a href={{number}}/home><button class="button2" > Go Home </button></a>
+ {% endif %}
+	{% if show_next %}<span style = "float:right"><a href={{number|add:1}}><button class="button2" >Next</button></a></span> {% endif %}
+</center>
+
+
+  {% endblock %}
+
