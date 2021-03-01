@@ -7,7 +7,12 @@ class QuestionsAdmin(admin.ModelAdmin):
                     'Option_3_Correct', 'Option_4_Correct')
 
 
+class UserQuestionsAdmin(admin.ModelAdmin):
+    list_display = ('User_ID','Set_Id', 'Question_1_Status', 'Question_2_Status', 'Question_3_Status', 'Question_4_Status', 'Question_5_Status', 'Question_6_Status', 'Question_7_Status',
+                    'Question_8_Status', 'Question_9_Status','Question_10_Status')
+
+
 admin.site.register(Questions, QuestionsAdmin)
-admin.site.register(UserQuestions)
+admin.site.register(UserQuestions, UserQuestionsAdmin)
 
 # Register your models here.
