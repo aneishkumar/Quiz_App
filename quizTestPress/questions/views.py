@@ -218,11 +218,12 @@ def question(request, number, userId, setId):
         else:
             question_status = 'Incorrect Answer '
     total = total_marks(request, userId, setId)
+    total_percent = ( total / 10 ) * 100
     test_finished = test_completed(request, userId, setId)
     content = {'q': questions[0], 'test_finished': test_finished, 'number': number, 'show_previous': show_previous,
                'show_next': show_next,
                'question_answered': question_answered, 'question_status': question_status, 'progress': number * 10,
-               'total': total}
+               'total': total, 'percent':total_percent}
     return render(request, 'quiz_exam.html', content)
 
 

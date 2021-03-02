@@ -7,9 +7,9 @@ TestPress.in | Quiz
 <center>
 <h1>Quiz Time Set No. : {{ q.Set }} ( {{total}} out of 10 correct )  </h1>
 <br>
-	<h1 style ="color:red">{% if test_finished %}
-	Test Completed
- {% endif %}</h1>
+	{% if test_finished %}<h1 style ="color:red">
+	Test completed - {{ percent }} Percentile
+ </h1> {% endif %}
 <br>
 <div class="progress">
   <div class="progress-bar" role="progressbar" style="width: {{progress}}%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>

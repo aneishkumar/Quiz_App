@@ -5,9 +5,9 @@ TestPress.in | Available
 
 {% block content %}
 <center>
-	<h1> {% if user_logged %}
-	<a href="logout">Log out </a>
- {% endif %} </h1>
+	{% if user_logged %}<h1> Welcome {{ user }}
+
+  </h1> <a href="logout"> Log out </a>{% endif %}
 	<br><br><br><br><br><br><br>
 	<div id = "container ">
 		<header>
