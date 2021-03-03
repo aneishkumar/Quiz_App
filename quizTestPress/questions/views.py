@@ -28,7 +28,7 @@ def userlogout(request):
     return redirect("/")
 
 
-def home(request, number, userId, setId,home):
+def home(request, number, userId, setId, home):
     return redirect("/")
 
 
@@ -61,9 +61,9 @@ def index(request):
     question_set = list(set(question_set))
     print(user_logged)
     if user_logged:
-     content = {'questions': question_set, 'user_logged': user_logged, 'user' : username }
+        content = {'questions': question_set, 'user_logged': user_logged, 'user': username}
     else:
-     content = {'questions': question_set, 'user_logged': user_logged}
+        content = {'questions': question_set, 'user_logged': user_logged}
     return render(request, 'all_quiz.html', content)
 
 
@@ -144,6 +144,8 @@ def question(request, number, userId, setId):
     if request.user.username:
         username = request.user.username
         print(username)
+    else:
+        return redirect("/")
     show_previous = False
     show_next = False
     question_answered = False
@@ -218,12 +220,12 @@ def question(request, number, userId, setId):
         else:
             question_status = 'Incorrect Answer '
     total = total_marks(request, userId, setId)
-    total_percent = ( total / 10 ) * 100
+    total_percent = (total / 10) * 100
     test_finished = test_completed(request, userId, setId)
     content = {'q': questions[0], 'test_finished': test_finished, 'number': number, 'show_previous': show_previous,
                'show_next': show_next,
                'question_answered': question_answered, 'question_status': question_status, 'progress': number * 10,
-               'total': total, 'percent':total_percent}
+               'total': total, 'percent': total_percent}
     return render(request, 'quiz_exam.html', content)
 
 
